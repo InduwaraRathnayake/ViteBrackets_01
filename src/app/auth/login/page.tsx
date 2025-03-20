@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "@/app/components/Navbar";
-import { toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage() {
@@ -145,7 +145,7 @@ export default function LoginPage() {
     } catch (error) {
       setErrors((prev) => ({
         ...prev,
-        auth: "An error occurred. Please try again.",
+        auth: `An error occurred. Please try again. ${error}`,
       }));
     } finally {
       setLoading(false);
@@ -225,7 +225,9 @@ export default function LoginPage() {
                 type="submit"
                 className="py-[10px] px-[15px] rounded-[20px] outline-none bg-gradient-to-r from-indigo-300 to-purple-400 text-white cursor-pointer shadow-[0_3px_8px_rgba(0,0,0,0.24)] active:shadow-none hover:scale-97 transition duration-100 ease-in"
               >
-                Log in
+                {
+                  loading ? "Loading..." : "Log in"
+                }
               </button>
             </form>
 
